@@ -1,0 +1,71 @@
+option java_package = "com.github.quexer.kodec";
+option java_outer_classname = "Pb";
+
+// bag id = 0
+message Msg{
+    required string to = 1;//prepare for group chat, use string type instead of int64
+    optional int64 from = 2; //omitted for up msg
+    enum Type {
+        UNKNOWN = 0;
+        TXT = 1;
+        IMG = 2;
+        VOICE = 3;
+        SYS = 4;
+        CARD = 5;
+        GIF = 6;
+    }
+    optional Type tp = 3 [default = UNKNOWN]; // message type
+    optional string desc = 4 [default = ""]; //support unknown message type
+
+    //d has different meanings for different type:
+    //TXT & SYS: text content
+    //IMG: image binary
+    //VOICE: voice binary
+    //CARD: Card binary
+    required bytes d = 5;
+    optional int64 ct = 6; //omitted for up msg
+    repeated Meta meta = 7;
+}
+
+// the user card
+message Card{
+    required int64 uid = 1;
+    required string name = 2;
+    optional string icon = 3;//url for icon
+}
+
+
+// bag id = 1
+message Cmd {
+    enum Type {
+        UNKNOWN = 0;
+        UNAUTHORIZED = 1;
+        PING = 2;
+        VISIT = 3;
+        SYNC = 4;
+    }
+    required Type tp = 1;
+    required int64 ct = 2;
+    optional string txt = 3 [default = ""]; //support unknown message type
+    repeated Meta meta = 4;
+}
+
+// meta, add invisible payload to message & command
+message Meta{
+    enum Type {
+        UNKNOWN = 0;
+        JOIN_TOK = 1;
+        LEAVE_TOK = 2;
+        DISMISS_TOK = 3;
+        EVENT_CHANGE = 4;
+        ADD_FRIEND = 5;
+        DEL_FRIEND = 6;
+        USER_UPDATE = 7;
+    }
+    required Type tp = 1;
+    //for JOIN_TOK/LEAVE_TOK, it's comma separated uids
+    //for event change it's event id
+    //for ADD_FRIEND/DEL_FRIEND/USER_UPDATE, it's comma separated uids
+    //for USER_UPDATE, it's uid
+    required string txt = 2;
+}
