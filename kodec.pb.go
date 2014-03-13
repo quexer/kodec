@@ -120,6 +120,7 @@ const (
 	Meta_ADD_FRIEND   Meta_Type = 5
 	Meta_DEL_FRIEND   Meta_Type = 6
 	Meta_USER_UPDATE  Meta_Type = 7
+	Meta_SETUP_TOK    Meta_Type = 8
 )
 
 var Meta_Type_name = map[int32]string{
@@ -131,6 +132,7 @@ var Meta_Type_name = map[int32]string{
 	5: "ADD_FRIEND",
 	6: "DEL_FRIEND",
 	7: "USER_UPDATE",
+	8: "SETUP_TOK",
 }
 var Meta_Type_value = map[string]int32{
 	"UNKNOWN":      0,
@@ -141,6 +143,7 @@ var Meta_Type_value = map[string]int32{
 	"ADD_FRIEND":   5,
 	"DEL_FRIEND":   6,
 	"USER_UPDATE":  7,
+	"SETUP_TOK":    8,
 }
 
 func (x Meta_Type) Enum() *Meta_Type {
@@ -316,6 +319,7 @@ type Meta struct {
 	// for event change it's event id
 	// for ADD_FRIEND/DEL_FRIEND/USER_UPDATE, it's comma separated uids
 	// for USER_UPDATE, it's uid
+	// for SETUP_TOK, it's nothing
 	Txt              *string `protobuf:"bytes,2,req,name=txt" json:"txt,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
