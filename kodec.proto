@@ -62,12 +62,13 @@ message Meta{
         DEL_FRIEND = 6;
         USER_UPDATE = 7;
         SETUP_TOK = 8;
+        UPDATE_TOK = 9;
     }
     required Type tp = 1;
     //for JOIN_TOK/LEAVE_TOK, it's comma separated uids
     //for event change it's event id
     //for ADD_FRIEND/DEL_FRIEND/USER_UPDATE, it's comma separated uids
     //for USER_UPDATE, it's uid
-    //for SETUP_TOK, it's nothing
+    //for SETUP_TOK, UPDATE_TOK, it's nothing
     required string txt = 2;
 }
