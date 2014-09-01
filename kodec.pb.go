@@ -23,6 +23,7 @@ const (
 	Msg_SYS     Msg_Type = 4
 	Msg_CARD    Msg_Type = 5
 	Msg_GIF     Msg_Type = 6
+	Msg_NEWS    Msg_Type = 7
 )
 
 var Msg_Type_name = map[int32]string{
@@ -33,6 +34,7 @@ var Msg_Type_name = map[int32]string{
 	4: "SYS",
 	5: "CARD",
 	6: "GIF",
+	7: "NEWS",
 }
 var Msg_Type_value = map[string]int32{
 	"UNKNOWN": 0,
@@ -42,6 +44,7 @@ var Msg_Type_value = map[string]int32{
 	"SYS":     4,
 	"CARD":    5,
 	"GIF":     6,
+	"NEWS":    7,
 }
 
 func (x Msg_Type) Enum() *Msg_Type {
@@ -122,19 +125,21 @@ const (
 	Meta_USER_UPDATE  Meta_Type = 7
 	Meta_SETUP_TOK    Meta_Type = 8
 	Meta_UPDATE_TOK   Meta_Type = 9
+	Meta_NEWS         Meta_Type = 10
 )
 
 var Meta_Type_name = map[int32]string{
-	0: "UNKNOWN",
-	1: "JOIN_TOK",
-	2: "LEAVE_TOK",
-	3: "DISMISS_TOK",
-	4: "EVENT_CHANGE",
-	5: "ADD_FRIEND",
-	6: "DEL_FRIEND",
-	7: "USER_UPDATE",
-	8: "SETUP_TOK",
-	9: "UPDATE_TOK",
+	0:  "UNKNOWN",
+	1:  "JOIN_TOK",
+	2:  "LEAVE_TOK",
+	3:  "DISMISS_TOK",
+	4:  "EVENT_CHANGE",
+	5:  "ADD_FRIEND",
+	6:  "DEL_FRIEND",
+	7:  "USER_UPDATE",
+	8:  "SETUP_TOK",
+	9:  "UPDATE_TOK",
+	10: "NEWS",
 }
 var Meta_Type_value = map[string]int32{
 	"UNKNOWN":      0,
@@ -147,6 +152,7 @@ var Meta_Type_value = map[string]int32{
 	"USER_UPDATE":  7,
 	"SETUP_TOK":    8,
 	"UPDATE_TOK":   9,
+	"NEWS":         10,
 }
 
 func (x Meta_Type) Enum() *Meta_Type {
