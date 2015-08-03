@@ -74,3 +74,7 @@ message Meta{
     //for SETUP_TOK, UPDATE_TOK, it's nothing
     required string txt = 2;
 }
+
+message Ack {
+    required string id = 1;
+}

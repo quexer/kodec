@@ -2,15 +2,26 @@
 // source: kodec.proto
 // DO NOT EDIT!
 
+/*
+Package kodec is a generated protocol buffer package.
+
+It is generated from these files:
+	kodec.proto
+
+It has these top-level messages:
+	Msg
+	Card
+	Cmd
+	Meta
+	Ack
+*/
 package kodec
 
-import proto "code.google.com/p/goprotobuf/proto"
-import json "encoding/json"
+import proto "github.com/golang/protobuf/proto"
 import math "math"
 
-// Reference proto, json, and math imports to suppress error if they are not otherwise used.
+// Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
-var _ = &json.SyntaxError{}
 var _ = math.Inf
 
 type Msg_Type int32
@@ -55,9 +66,6 @@ func (x Msg_Type) Enum() *Msg_Type {
 func (x Msg_Type) String() string {
 	return proto.EnumName(Msg_Type_name, int32(x))
 }
-func (x Msg_Type) MarshalJSON() ([]byte, error) {
-	return json.Marshal(x.String())
-}
 func (x *Msg_Type) UnmarshalJSON(data []byte) error {
 	value, err := proto.UnmarshalJSONEnum(Msg_Type_value, data, "Msg_Type")
 	if err != nil {
@@ -99,9 +107,6 @@ func (x Cmd_Type) Enum() *Cmd_Type {
 }
 func (x Cmd_Type) String() string {
 	return proto.EnumName(Cmd_Type_name, int32(x))
-}
-func (x Cmd_Type) MarshalJSON() ([]byte, error) {
-	return json.Marshal(x.String())
 }
 func (x *Cmd_Type) UnmarshalJSON(data []byte) error {
 	value, err := proto.UnmarshalJSONEnum(Cmd_Type_value, data, "Cmd_Type")
@@ -163,9 +168,6 @@ func (x Meta_Type) Enum() *Meta_Type {
 func (x Meta_Type) String() string {
 	return proto.EnumName(Meta_Type_name, int32(x))
 }
-func (x Meta_Type) MarshalJSON() ([]byte, error) {
-	return json.Marshal(x.String())
-}
 func (x *Meta_Type) UnmarshalJSON(data []byte) error {
 	value, err := proto.UnmarshalJSONEnum(Meta_Type_value, data, "Meta_Type")
 	if err != nil {
@@ -180,7 +182,7 @@ type Msg struct {
 	To   *string   `protobuf:"bytes,1,req,name=to" json:"to,omitempty"`
 	From *int64    `protobuf:"varint,2,opt,name=from" json:"from,omitempty"`
 	Tp   *Msg_Type `protobuf:"varint,3,opt,name=tp,enum=Msg_Type,def=0" json:"tp,omitempty"`
-	Desc *string   `protobuf:"bytes,4,opt,name=desc" json:"desc,omitempty"`
+	Desc *string   `protobuf:"bytes,4,opt,name=desc,def=" json:"desc,omitempty"`
 	// d has different meanings for different type:
 	// TXT & SYS: text content
 	// IMG: image binary
@@ -284,7 +286,7 @@ func (m *Card) GetIcon() string {
 type Cmd struct {
 	Tp               *Cmd_Type `protobuf:"varint,1,req,name=tp,enum=Cmd_Type" json:"tp,omitempty"`
 	Ct               *int64    `protobuf:"varint,2,req,name=ct" json:"ct,omitempty"`
-	Txt              *string   `protobuf:"bytes,3,opt,name=txt" json:"txt,omitempty"`
+	Txt              *string   `protobuf:"bytes,3,opt,name=txt,def=" json:"txt,omitempty"`
 	Meta             []*Meta   `protobuf:"bytes,4,rep,name=meta" json:"meta,omitempty"`
 	XXX_unrecognized []byte    `json:"-"`
 }
@@ -297,7 +299,7 @@ func (m *Cmd) GetTp() Cmd_Type {
 	if m != nil && m.Tp != nil {
 		return *m.Tp
 	}
-	return 0
+	return Cmd_UNKNOWN
 }
 
 func (m *Cmd) GetCt() int64 {
@@ -341,12 +343,28 @@ func (m *Meta) GetTp() Meta_Type {
 	if m != nil && m.Tp != nil {
 		return *m.Tp
 	}
-	return 0
+	return Meta_UNKNOWN
 }
 
 func (m *Meta) GetTxt() string {
 	if m != nil && m.Txt != nil {
 		return *m.Txt
+	}
+	return ""
+}
+
+type Ack struct {
+	Id               *string `protobuf:"bytes,1,req,name=id" json:"id,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *Ack) Reset()         { *m = Ack{} }
+func (m *Ack) String() string { return proto.CompactTextString(m) }
+func (*Ack) ProtoMessage()    {}
+
+func (m *Ack) GetId() string {
+	if m != nil && m.Id != nil {
+		return *m.Id
 	}
 	return ""
 }

@@ -11,7 +11,15 @@ import (
 const (
 	BAG_ID_MSG byte = iota //bag id in for message
 	BAG_ID_CMD
+	BAG_ID_ACK
 )
+
+func BuildAck(id string) *Ack {
+	m := &Ack{
+		Id: &id,
+	}
+	return m
+}
 
 func BuildCmd(tp Cmd_Type, desc string, tick int64) *Cmd {
 	m := &Cmd{
@@ -53,6 +61,8 @@ func Boxing(m proto.Message) ([]byte, error) {
 		bagId = BAG_ID_MSG
 	case *Cmd:
 		bagId = BAG_ID_CMD
+	case *Ack:
+		bagId = BAG_ID_ACK
 	default:
 		return nil, fmt.Errorf("unknown frame")
 	}
@@ -77,6 +87,12 @@ func Unboxing(data []byte) (interface{}, error) {
 		}
 
 		return upMsg, nil
+	case BAG_ID_ACK:
+		ack := new(Ack)
+		if err := proto.Unmarshal(data, ack); err != nil {
+			return nil, fmt.Errorf("parse ack err %v", err)
+		}
+		return ack, nil
 	default:
 		return nil, fmt.Errorf("warning: unknown bag id: %v", bagId)
 	}
