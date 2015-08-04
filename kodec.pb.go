@@ -191,6 +191,7 @@ type Msg struct {
 	D                []byte  `protobuf:"bytes,5,req,name=d" json:"d,omitempty"`
 	Ct               *int64  `protobuf:"varint,6,opt,name=ct" json:"ct,omitempty"`
 	Meta             []*Meta `protobuf:"bytes,7,rep,name=meta" json:"meta,omitempty"`
+	Id               *string `protobuf:"bytes,8,opt,name=id,def=" json:"id,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
 
@@ -247,6 +248,13 @@ func (m *Msg) GetMeta() []*Meta {
 		return m.Meta
 	}
 	return nil
+}
+
+func (m *Msg) GetId() string {
+	if m != nil && m.Id != nil {
+		return *m.Id
+	}
+	return ""
 }
 
 // the user card

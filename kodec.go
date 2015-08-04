@@ -49,6 +49,10 @@ func BuildMessage(from int, to string, data []byte, tp Msg_Type, tick int64) *Ms
 	return m
 }
 
+func SetMessageId(m *Msg, id string) {
+	m.Id = proto.String(id)
+}
+
 func Boxing(m proto.Message) ([]byte, error) {
 	b, err := proto.Marshal(m)
 	if err != nil {
