@@ -97,6 +97,12 @@ func Unboxing(data []byte) (interface{}, error) {
 			return nil, fmt.Errorf("parse ack err %v", err)
 		}
 		return ack, nil
+	case BAG_ID_CMD:
+		cmd := new(Cmd)
+		if err := proto.Unmarshal(data, cmd); err != nil {
+			return nil, fmt.Errorf("parse cmd err %v", err)
+		}
+		return cmd, nil
 	default:
 		return nil, fmt.Errorf("warning: unknown bag id: %v", bagId)
 	}
