@@ -4,8 +4,8 @@
 package kodec
 
 import (
-	"code.google.com/p/goprotobuf/proto"
 	"fmt"
+	"github.com/golang/protobuf/proto"
 )
 
 const (
