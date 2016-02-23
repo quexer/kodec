@@ -66,6 +66,7 @@ message Meta{
         SETUP_TOK = 8;
         UPDATE_TOK = 9;
         NEWS = 10;
+        LANDING_PHONE_TIME = 11;
     }
     required Type tp = 1;
     //for JOIN_TOK/LEAVE_TOK, it's comma separated uids
