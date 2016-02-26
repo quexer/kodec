@@ -14,6 +14,7 @@ message Msg{
         CARD = 5;
         GIF = 6;
         NEWS = 7;
+        FILE = 8;
     }
     optional Type tp = 3 [default = UNKNOWN]; // message type
     optional string desc = 4 [default = ""]; //support unknown message type
@@ -35,6 +36,23 @@ message Card{
     required string name = 2;
     optional string icon = 3;//url for icon
 }
+
+message File{
+    required string name = 1;
+    required int64 size = 2; // file size, unit B
+    required string dl = 3; //download url
+    enum Type {
+        UNKNOWN = 0;
+        PDF = 1;
+        DOC = 2; // doc & docx
+        XLS = 3; // xls & xlsx
+        PPT = 4; // ppt、pptx、pps...
+        IMG = 5; //png、gif、jpeg、jpg、bmp...
+    }
+    required Type tp = 4;
+    optional bytes d = 5;  // img thumbnail data
+}
+
 
 
 // bag id = 1
