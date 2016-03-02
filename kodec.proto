@@ -88,6 +88,7 @@ message Meta{
         LANDING_PHONE = 11;
         VOIP = 12;
         VIDEO = 13;
+        CONSULAR_PHONE = 14; //CONSULAR PROTECTION PHONE NUMBER
     }
     required Type tp = 1;
     //for JOIN_TOK/LEAVE_TOK, it's comma separated uids
