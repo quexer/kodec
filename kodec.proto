@@ -50,7 +50,7 @@ message File{
         IMG = 5; //png、gif、jpeg、jpg、bmp...
         TXT = 6;
     }
-    required Type tp = 4;
+    optional Type tp = 4 [default = UNKNOWN];
     optional bytes d = 5;  // img thumbnail data
 }
 
@@ -65,7 +65,7 @@ message Cmd {
         VISIT = 3;
         SYNC = 4;
     }
-    required Type tp = 1;
+    optional Type tp = 1 [default = UNKNOWN];
     required int64 ct = 2;
     optional string txt = 3 [default = ""]; //support unknown message type
     repeated Meta meta = 4;
@@ -90,7 +90,7 @@ message Meta{
         VIDEO = 13;
         CONSULAR_PHONE = 14; //CONSULAR PROTECTION PHONE NUMBER
     }
-    required Type tp = 1;
+    optional Type tp = 1 [default = UNKNOWN];
     //for JOIN_TOK/LEAVE_TOK, it's comma separated uids
     //for event change it's event id
     //for ADD_FRIEND/DEL_FRIEND/USER_UPDATE, it's comma separated uids
