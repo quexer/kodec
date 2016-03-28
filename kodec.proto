@@ -52,6 +52,8 @@ message File{
     }
     optional Type tp = 4 [default = UNKNOWN];
     optional bytes d = 5;  // img thumbnail data
+    //原始文件，默认值true
+    optional bool original = 6  [default = true];
 }
 
 
