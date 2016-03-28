@@ -52,6 +52,10 @@ message File{
     }
     optional Type tp = 4 [default = UNKNOWN];
     optional bytes d = 5;  // img thumbnail data
+    //原始文件，默认值true
+    //除图片以外的文件，值都是true
+    //当原始图片size大于一个数量级，此值是true, 否则是false
+    optional bool original = 6  [default = true];
 }
 
 
