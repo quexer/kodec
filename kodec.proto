@@ -91,6 +91,7 @@ message Meta{
         VOIP = 12;
         VIDEO = 13;
         CONSULAR_PHONE = 14; //CONSULAR PROTECTION PHONE NUMBER
+        PENDING_FRIEND = 15; //waiting to add friends
     }
     optional Type tp = 1 [default = UNKNOWN];
     //for JOIN_TOK/LEAVE_TOK, it's comma separated uids
