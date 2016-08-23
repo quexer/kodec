@@ -28,6 +28,7 @@ message Msg{
     optional int64 ct = 6; //omitted for up msg
     repeated Meta meta = 7;
     optional string id = 8 [default = ""]; //id
+    repeated string at = 9; //@user
 }
 
 // the user card
